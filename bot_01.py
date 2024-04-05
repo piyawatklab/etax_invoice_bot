@@ -9,17 +9,14 @@ from logging import ERROR
 import os
 import glob
 
-from libs.settings import USERNAME_LOGIN , PASSWORD_LOGIN
-
-import platform
+from libs.settings import USERNAME_LOGIN , PASSWORD_LOGIN , SHEET_LINK
 
 PWD = os.getcwd()
 
 options = webdriver.ChromeOptions()
 options.add_argument("--start-maximized")
 prefs = {"profile.default_content_settings.popups": 0,
-            "download.default_directory": f'{PWD}/downloaded_files/', # IMPORTANT - ENDING SLASH V IMPORTANT
-            # "download.default_directory": r"C:\Users\ball\Desktop\idsbot\downloads\\", # IMPORTANT - ENDING SLASH V IMPORTANT
+            "download.default_directory": f'{PWD}/downloaded_files/',
             "directory_upgrade": True}
 options.add_experimental_option("prefs",prefs)
 
@@ -32,7 +29,7 @@ def run():
 
     # 2. Download invoice - main.csv ตัวใหม่มาเก็บไว้
     driver = Driver(uc=True)
-    url = 'https://docs.google.com/spreadsheets/d/1No-Rs7spSFk-wGJ2RFk5Ao5mOyuR1HZSVq7ykoCJa4E/export?format=csv'
+    url = SHEET_LINK
     driver.get(url)
     time.sleep(3)
 
@@ -87,7 +84,7 @@ def download_invoice():
 
     driver = Driver(uc=True)
 
-    url = 'https://docs.google.com/spreadsheets/u/0/d/1No-Rs7spSFk-wGJ2RFk5Ao5mOyuR1HZSVq7ykoCJa4E/export?format=csv&id=1No-Rs7spSFk-wGJ2RFk5Ao5mOyuR1HZSVq7ykoCJa4E&gid=0'
+    url = SHEET_LINK
     driver.get(url)
 
     time.sleep(3)
