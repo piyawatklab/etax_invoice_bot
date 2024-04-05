@@ -3,26 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 
 from seleniumbase import Driver
-from seleniumbase.config import settings
-
-import calendar
-
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support import expected_conditions
-from selenium.webdriver.support.wait import WebDriverWait
-
-from selenium.webdriver.firefox.options import Options
-
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
-# from openpyxl import load_workbook
-
-import requests
-from datetime import date, datetime, timedelta
 import time
-import json
-import re
-import getpass
 from logging import ERROR
 
 import os
@@ -51,7 +32,7 @@ def run():
 
     # 2. Download invoice - main.csv ตัวใหม่มาเก็บไว้
     driver = Driver(uc=True)
-    url = 'https://docs.google.com/spreadsheets/u/0/d/1No-Rs7spSFk-wGJ2RFk5Ao5mOyuR1HZSVq7ykoCJa4E/export?format=csv&id=1No-Rs7spSFk-wGJ2RFk5Ao5mOyuR1HZSVq7ykoCJa4E&gid=0'
+    url = 'https://docs.google.com/spreadsheets/d/1No-Rs7spSFk-wGJ2RFk5Ao5mOyuR1HZSVq7ykoCJa4E/export?format=csv'
     driver.get(url)
     time.sleep(3)
 
