@@ -57,26 +57,30 @@ def run():
     time.sleep(1)
 
     for line in invoice_list:
-        
-        # 4.3 Search invoice no. from invoice list
-        search_doc = driver.find_element(By.XPATH, "//input[@name='documentNo']")
-        driver.execute_script("arguments[0].scrollIntoView(true);", search_doc)
 
-        search_doc.clear()
-        search_doc.send_keys(line)
-        
-        driver.find_element(By.XPATH, "//button[@name='doSearch']").click()
-        time.sleep(3)
+        try:
+            # 4.3 Search invoice no. from invoice list
+            search_doc = driver.find_element(By.XPATH, "//input[@name='documentNo']")
+            driver.execute_script("arguments[0].scrollIntoView(true);", search_doc)
 
-        invoice_search = driver.find_element(By.TAG_NAME, "tbody")
-        invoice_search_line = invoice_search.find_elements(By.TAG_NAME, "tr")
+            search_doc.clear()
+            search_doc.send_keys(line)
+            
+            driver.find_element(By.XPATH, "//button[@name='doSearch']").click()
+            time.sleep(3)
 
-        # 4.4 Download invoice
-        if len(invoice_search_line) != 0 :
-            driver.execute_script("arguments[0].scrollIntoView(true);", invoice_search_line[0])
-            invoice_search_line[0].find_element(By.XPATH, "//a[@name='downloadPDF0']").click()
-        
-        time.sleep(3)
+            invoice_search = driver.find_element(By.TAG_NAME, "tbody")
+            invoice_search_line = invoice_search.find_elements(By.TAG_NAME, "tr")
+
+            # 4.4 Download invoice
+            if len(invoice_search_line) != 0 :
+                driver.execute_script("arguments[0].scrollIntoView(true);", invoice_search_line[0])
+                invoice_search_line[0].find_element(By.XPATH, "//a[@name='downloadPDF0']").click()
+            
+            time.sleep(3)
+
+        except Exception as e:
+            time.sleep(1)
 
     driver.quit()
 
