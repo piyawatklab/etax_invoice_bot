@@ -92,16 +92,6 @@ def run(name):
 
     driver.quit()
 
-def download_invoice():
-
-    driver = Driver(uc=True)
-
-    url = SHEET_LINK
-    driver.get(url)
-
-    time.sleep(3)
-    driver.quit()
-
 def search_invoice():
 
     df = pd.read_excel('downloaded_files/invoice.xlsx')
@@ -109,12 +99,10 @@ def search_invoice():
     data_array = df.values.tolist()
     data_array = [str(item[0]) for item in data_array]
 
-    return data_array
-    
+    return data_array   
+
 def delete_invoice():
-    files = glob.glob(f'downloaded_files/*csv')
-    for f in files:
-        os.remove(f)
+
     files = glob.glob(f'downloaded_files/*xlsx')
     for f in files:
         os.remove(f)
@@ -127,7 +115,7 @@ if __name__ == "__main__":
             key, value = arg.split("=")
             if key == "name":
                 name = value
-                print("Name:", name)
+    
     print("Name : ", name)
     run(name)
     
