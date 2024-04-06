@@ -107,7 +107,7 @@ def search_invoice():
 
     print(data_array)
 
-    return data_array   
+    return data_array
 
 def delete_invoice():
 
