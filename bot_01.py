@@ -8,6 +8,9 @@ from logging import ERROR
 
 import os
 import glob
+import sys
+
+import pandas as pd
 
 from libs.settings import USERNAME_LOGIN , PASSWORD_LOGIN , SHEET_LINK
 
@@ -22,18 +25,23 @@ options.add_experimental_option("prefs",prefs)
 
 data = []
 
-def run():
+def run(name):
 
-    # 1. ลบ invoice - main.csv เดิมออก
-    delete_invoice()
-
-    # 2. Download invoice - main.csv ตัวใหม่มาเก็บไว้
+    # 1. เปิด Browser ขึ้นมา
     driver = Driver(uc=True)
-    url = SHEET_LINK
-    driver.get(url)
-    time.sleep(3)
 
-    # 3. อ่านเลขที่ Invoice จาก invoice - main.csv
+    # 2. ตรวจสอบการรัน
+    if name == 'online':
+
+        # 2.1 ถ้ารันแบบ online ลบ invoice.xlsx เดิมออก
+        delete_invoice()
+
+        # 2.2 โหลดไฟล์ invoice.xlsx ใหม่มาเก็บไว้
+        url = SHEET_LINK
+        driver.get(url)
+        time.sleep(3)
+
+    # 3. อ่านเลขที่ Invoice จาก invoice.xlsx
     invoice_list = search_invoice()
 
     # 4. เริ่มต้น Download Invoice
@@ -96,15 +104,10 @@ def download_invoice():
 
 def search_invoice():
 
-    with open('downloaded_files/invoice - main.csv', 'r') as file:
-        csv_data = file.readlines()
+    df = pd.read_excel('downloaded_files/invoice.xlsx')
 
-    data_array = []
-    for line in csv_data:
-        line = line.strip()
-        if line == 'invoice':
-            continue
-        data_array.append(line)
+    data_array = df.values.tolist()
+    data_array = [str(item[0]) for item in data_array]
 
     return data_array
     
@@ -112,7 +115,20 @@ def delete_invoice():
     files = glob.glob(f'downloaded_files/*csv')
     for f in files:
         os.remove(f)
+    files = glob.glob(f'downloaded_files/*xlsx')
+    for f in files:
+        os.remove(f)
 
 if __name__ == "__main__":
 
-    run()
+    name = 'defauld'
+    if len(sys.argv) > 1:
+        for arg in sys.argv[1:]:
+            key, value = arg.split("=")
+            if key == "name":
+                name = value
+                print("Name:", name)
+    print("Name : ", name)
+    run(name)
+    
+    
