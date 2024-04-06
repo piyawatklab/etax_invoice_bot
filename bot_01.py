@@ -28,7 +28,8 @@ data = []
 def run(name):
 
     # 1. เปิด Browser ขึ้นมา
-    driver = Driver(uc=True)
+    # driver = Driver(uc=True)
+    driver = Driver(uc=True,headless=True)
 
     # 2. ตรวจสอบการรัน
     if name == 'online':
