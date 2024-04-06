@@ -88,11 +88,15 @@ def run(name):
                     invoice_search_line[0].find_element(By.XPATH, "//a[@name='downloadPDF0']").click()
                 
                 time.sleep(3)
+                print(line,'OK')
 
             except Exception as e:
                 time.sleep(1)
+                print(line,'Error')
 
     driver.quit()
+    print('Done')
+    time.sleep(3)
 
 def search_invoice():
 
