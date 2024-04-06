@@ -11,3 +11,11 @@
 
    2.2 Run xlsx online
    ! .\run-online.bat
+
+3. Install Environment
+   
+   pip install selenium
+   pip install seleniumbase
+   pip install pandas
+   pip install python-dotenv
+   pip install openpyxl
