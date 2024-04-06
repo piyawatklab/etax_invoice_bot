@@ -99,6 +99,8 @@ def search_invoice():
     data_array = df.values.tolist()
     data_array = [str(item[0]) for item in data_array]
 
+    print(data_array)
+
     return data_array   
 
 def delete_invoice():
