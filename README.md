@@ -19,3 +19,7 @@
    pip install pandas
    pip install python-dotenv
    pip install openpyxl
+
+4. Update Source Code
+
+   git pull https://github.com/piyawatklab/etax_invoice_bot.git
