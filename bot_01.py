@@ -8,6 +8,7 @@ from logging import ERROR
 
 import os
 import glob
+import shutil
 import sys
 
 import pandas as pd
@@ -35,7 +36,7 @@ def run(name):
     if name == 'online':
 
         # 2.1 ถ้ารันแบบ online ลบ invoice.xlsx เดิมออก
-        delete_invoice()
+        clean_order()
 
         # 2.2 โหลดไฟล์ invoice.xlsx ใหม่มาเก็บไว้
         url = SHEET_LINK
@@ -109,11 +110,24 @@ def search_invoice():
 
     return data_array
 
-def delete_invoice():
+def clean_order():
 
-    files = glob.glob(f'downloaded_files/*xlsx')
-    for f in files:
-        os.remove(f)
+    # files = glob.glob(f'downloaded_files/*pdf')
+    # for f in files:
+    #     os.remove(f)
+
+    source_directory = 'downloaded_files'
+    destination_directory = 'downloaded_files/backup_files'
+
+    if not os.path.exists(destination_directory):
+        os.makedirs(destination_directory)
+
+    files = os.listdir(source_directory)
+    for file_name in files:
+        if file_name.endswith('.pdf') :
+            source_path = os.path.join(source_directory, file_name)
+            destination_path = os.path.join(destination_directory, file_name)
+            shutil.move(source_path, destination_path)
 
 if __name__ == "__main__":
 
