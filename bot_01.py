@@ -138,7 +138,8 @@ def move_file():
             file_name = os.path.basename(source_file)
             print(file_name)
             new_file_name = file_name.split('_')[0] + ".pdf"
-            new_path = DESTINATION_PATH
+            # new_path = DESTINATION_PATH
+            new_path = 'output_files'
             # shutil.move(source_file, f'{new_path}\\{file_name}')
             shutil.move(source_file, f'{new_path}\\{new_file_name}')
             
