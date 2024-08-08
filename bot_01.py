@@ -13,7 +13,7 @@ import sys
 
 import pandas as pd
 
-from libs.settings import USERNAME_LOGIN , PASSWORD_LOGIN , SHEET_LINK
+from libs.settings import USERNAME_LOGIN , PASSWORD_LOGIN , SHEET_LINK , DESTINATION_PATH
 
 PWD = os.getcwd()
 
@@ -98,6 +98,7 @@ def run(name):
     driver.quit()
     print('Done')
     time.sleep(3)
+    move_file()
 
 def search_invoice():
 
@@ -128,6 +129,22 @@ def clean_order():
             source_path = os.path.join(source_directory, file_name)
             destination_path = os.path.join(destination_directory, file_name)
             shutil.move(source_path, destination_path)
+
+def move_file():
+    try : 
+        files = glob.glob(f'downloaded_files/*pdf')
+
+        for source_file in files:
+            file_name = os.path.basename(source_file)
+            print(file_name)
+            new_file_name = file_name.split('_')[0] + ".pdf"
+            new_path = DESTINATION_PATH
+            # shutil.move(source_file, f'{new_path}\\{file_name}')
+            shutil.move(source_file, f'{new_path}\\{new_file_name}')
+            
+    except Exception as e:
+        time.sleep(1)
+        print(e, 'move_file Error')
 
 if __name__ == "__main__":
 

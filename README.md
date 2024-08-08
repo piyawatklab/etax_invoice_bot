@@ -3,6 +3,7 @@
    USERNAME_LOGIN=username
    PASSWORD_LOGIN=password
    SHEET_LINK=google-sheet-link
+   DESTINATION_PATH=output_files
 
 2. How to run
 
