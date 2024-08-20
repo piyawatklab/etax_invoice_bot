@@ -149,15 +149,13 @@ def move_file():
 
 if __name__ == "__main__":
 
-    # name = 'default'
-    # if len(sys.argv) > 1:
-    #     for arg in sys.argv[1:]:
-    #         key, value = arg.split("=")
-    #         if key == "name":
-    #             name = value
+    name = 'default'
+    if len(sys.argv) > 1:
+        for arg in sys.argv[1:]:
+            key, value = arg.split("=")
+            if key == "name":
+                name = value
     
-    # print("Name :", name)
-    # run(name)
-    
-    move_file()
+    print("Name :", name)
+    run(name)
     
