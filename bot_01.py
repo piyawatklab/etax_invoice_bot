@@ -138,8 +138,8 @@ def move_file():
             file_name = os.path.basename(source_file)
             print(file_name)
             new_file_name = file_name.split('_')[0] + ".pdf"
-            # new_path = DESTINATION_PATH
-            new_path = 'output_files'
+            new_path = DESTINATION_PATH
+            # new_path = 'output_files'
             # shutil.move(source_file, f'{new_path}\\{file_name}')
             shutil.move(source_file, f'{new_path}\\{new_file_name}')
             
@@ -149,14 +149,15 @@ def move_file():
 
 if __name__ == "__main__":
 
-    name = 'default'
-    if len(sys.argv) > 1:
-        for arg in sys.argv[1:]:
-            key, value = arg.split("=")
-            if key == "name":
-                name = value
+    # name = 'default'
+    # if len(sys.argv) > 1:
+    #     for arg in sys.argv[1:]:
+    #         key, value = arg.split("=")
+    #         if key == "name":
+    #             name = value
     
-    print("Name :", name)
-    run(name)
+    # print("Name :", name)
+    # run(name)
     
+    move_file()
     
