@@ -2,4 +2,4 @@ downloaded_files/*pdf
 downloaded_files/backup_files/*pdf
 test.ipynb
 .env
-output_files/*
+output_files/*pdf
