@@ -29,8 +29,8 @@ data = []
 def run(name):
 
     # 1. เปิด Browser ขึ้นมา
-    # driver = Driver(uc=True)
-    driver = Driver(uc=True,headless=True)
+    driver = Driver(uc=True)
+    # driver = Driver(uc=True,headless=True)
 
     # 2. ตรวจสอบการรัน
     if name == 'online':
@@ -62,7 +62,7 @@ def run(name):
         driver.find_element(By.XPATH, "//button[@name='btn_login']").click()
         time.sleep(3)
         driver.find_element(By.XPATH, "//button[@class='swal2-confirm btn btn-info btn-fill']").click()
-        time.sleep(3)
+        time.sleep(10)
 
         driver.find_element(By.XPATH, "//a[@name='showSearchForm']").click()
         time.sleep(1)
