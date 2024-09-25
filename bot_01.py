@@ -69,8 +69,9 @@ def run(name):
             login_success = driver.find_elements(By.XPATH, "//a[@name='showSearchForm']")
 
             if len(login_success) == 0 and i == 10 :
+                driver.quit()
                 print("รบกวนติดต่อ Developer")
-                time.sleep(10)
+                time.sleep(20)
             
             elif len(login_success) == 0 :
                 print(f"รอสักครู่ รอบที่ {i+1}")
