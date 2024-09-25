@@ -62,7 +62,24 @@ def run(name):
         driver.find_element(By.XPATH, "//button[@name='btn_login']").click()
         time.sleep(3)
         driver.find_element(By.XPATH, "//button[@class='swal2-confirm btn btn-info btn-fill']").click()
-        time.sleep(10)
+        time.sleep(3)
+        i = 0
+        while i <= 10:
+            
+            login_success = driver.find_elements(By.XPATH, "//a[@name='showSearchForm']")
+
+            if len(login_success) == 0 and i == 10 :
+                print("รบกวนติดต่อ Developer")
+                time.sleep(10)
+            
+            elif len(login_success) == 0 :
+                print(f"รอสักครู่ รอบที่ {i+1}")
+                time.sleep(10)
+            
+            else:
+                break
+            
+            i += 1
 
         driver.find_element(By.XPATH, "//a[@name='showSearchForm']").click()
         time.sleep(1)
